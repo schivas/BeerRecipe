@@ -19,6 +19,7 @@ namespace BeerRecipe
       private List<Classes.MaltType> _all;
       private List<Classes.MaltType> _filteredList;
 
+      public string GrainListFile { get; set; }
       public Classes.MaltType SelectedMalt { get; private set; }
 
       public Malt()
@@ -34,10 +35,16 @@ namespace BeerRecipe
 #if DEBUG
          this.Text = this.Text + " [DEBUG]";
 #endif
+         if (!System.IO.File.Exists(GrainListFile))
+         {
+            MessageBox.Show(this, "The Grain List File is missing - please set it.", "Problems detected", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            return;
+         }
          string error;
          //_malts = Classes.Util.LoadMalts(@"E:\Data\Desktop\malttyper.xlsx", out error);
          //_malts = Classes.Util.LoadMalts(@"malttyper.xlsx", out error);
-         _malts = Classes.Util.LoadMalts_EEPLUS(@"malttyper.xlsx", out error);
+
+         _malts = Classes.Util.LoadMalts_EEPLUS(GrainListFile, out error);
          if (!string.IsNullOrEmpty(error))
          {
             MessageBox.Show(this, error, "Feil ved last av malt", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);

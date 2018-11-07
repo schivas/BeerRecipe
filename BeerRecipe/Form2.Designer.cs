@@ -43,9 +43,9 @@
          this.label6 = new System.Windows.Forms.Label();
          this.label7 = new System.Windows.Forms.Label();
          this.label8 = new System.Windows.Forms.Label();
-         this.lblEvaporation = new System.Windows.Forms.Label();
          this.label10 = new System.Windows.Forms.Label();
          this.label11 = new System.Windows.Forms.Label();
+         this.lblEvaporation = new System.Windows.Forms.Label();
          this.lblEstimatedSG = new System.Windows.Forms.Label();
          this.txtMaltMengde = new System.Windows.Forms.TextBox();
          this.txtSkyllevann = new System.Windows.Forms.TextBox();
@@ -87,6 +87,8 @@
          this.chkAdjustForVolTempChangeInWater = new System.Windows.Forms.CheckBox();
          this.groupBox3 = new System.Windows.Forms.GroupBox();
          this.groupBox4 = new System.Windows.Forms.GroupBox();
+         this.brnClearGrainFile = new System.Windows.Forms.Button();
+         this.lblGrainFile = new System.Windows.Forms.Label();
          ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
          this.statusStrip1.SuspendLayout();
          this.groupBox1.SuspendLayout();
@@ -209,15 +211,6 @@
          this.label8.Text = "Vann/malt forhold [liter]:";
          this.toolTip1.SetToolTip(this.label8, "Water to grain ratio (WGR), typisk 3.");
          // 
-         // lblEvaporation
-         // 
-         this.lblEvaporation.AutoSize = true;
-         this.lblEvaporation.Location = new System.Drawing.Point(15, 22);
-         this.lblEvaporation.Name = "lblEvaporation";
-         this.lblEvaporation.Size = new System.Drawing.Size(158, 14);
-         this.lblEvaporation.TabIndex = 0;
-         this.lblEvaporation.Text = "Avdampning [liter/time]:";
-         // 
          // label10
          // 
          this.label10.AutoSize = true;
@@ -238,6 +231,15 @@
          this.label11.Text = "Meskevolum [liter]:";
          this.toolTip1.SetToolTip(this.label11, "Meskevann, eller på engelsk - strike water. Dette er vannet som brukes til å mesk" +
         "e maltet. Vil typisk ha en temp. på 60°C til 70°C.");
+         // 
+         // lblEvaporation
+         // 
+         this.lblEvaporation.AutoSize = true;
+         this.lblEvaporation.Location = new System.Drawing.Point(15, 22);
+         this.lblEvaporation.Name = "lblEvaporation";
+         this.lblEvaporation.Size = new System.Drawing.Size(158, 14);
+         this.lblEvaporation.TabIndex = 0;
+         this.lblEvaporation.Text = "Avdampning [liter/time]:";
          // 
          // lblEstimatedSG
          // 
@@ -631,11 +633,38 @@
          this.groupBox4.TabStop = false;
          this.groupBox4.Text = "Oppskrift ";
          // 
+         // brnClearGrainFile
+         // 
+         this.brnClearGrainFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+         this.brnClearGrainFile.Font = new System.Drawing.Font("Georgia", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+         this.brnClearGrainFile.Location = new System.Drawing.Point(298, 410);
+         this.brnClearGrainFile.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
+         this.brnClearGrainFile.Name = "brnClearGrainFile";
+         this.brnClearGrainFile.Size = new System.Drawing.Size(94, 20);
+         this.brnClearGrainFile.TabIndex = 19;
+         this.brnClearGrainFile.Text = "Clear Grain File";
+         this.brnClearGrainFile.UseVisualStyleBackColor = true;
+         this.brnClearGrainFile.Click += new System.EventHandler(this.brnClearGrainFile_Click);
+         // 
+         // lblGrainFile
+         // 
+         this.lblGrainFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+         this.lblGrainFile.AutoSize = true;
+         this.lblGrainFile.Font = new System.Drawing.Font("Georgia", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+         this.lblGrainFile.ForeColor = System.Drawing.SystemColors.ControlDark;
+         this.lblGrainFile.Location = new System.Drawing.Point(300, 433);
+         this.lblGrainFile.Name = "lblGrainFile";
+         this.lblGrainFile.Size = new System.Drawing.Size(11, 12);
+         this.lblGrainFile.TabIndex = 20;
+         this.lblGrainFile.Text = "...";
+         // 
          // Form2
          // 
          this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
          this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
          this.ClientSize = new System.Drawing.Size(1147, 478);
+         this.Controls.Add(this.lblGrainFile);
+         this.Controls.Add(this.brnClearGrainFile);
          this.Controls.Add(this.groupBox4);
          this.Controls.Add(this.groupBox3);
          this.Controls.Add(this.chkAdjustForVolTempChangeInWater);
@@ -736,6 +765,8 @@
       private System.Windows.Forms.CheckBox chkAdjustForVolTempChangeInWater;
       private System.Windows.Forms.GroupBox groupBox4;
       private System.Windows.Forms.GroupBox groupBox3;
+      private System.Windows.Forms.Button brnClearGrainFile;
+      private System.Windows.Forms.Label lblGrainFile;
    }
 }
 

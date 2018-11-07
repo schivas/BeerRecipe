@@ -95,7 +95,7 @@ namespace BeerRecipe
 
       private void Form1_Load(object sender, EventArgs e)
       {
-         test();
+         //test();
 #if DEBUG
          this.Text = this.Text + " [DEBUG]";
 #endif
@@ -149,7 +149,7 @@ namespace BeerRecipe
          toolTip2.AutoPopDelay = 20000;
 
          tsslTotalVolum.Text = "--";
-
+         lblGrainFile.Text = Properties.Settings.Default.GrainList;
          // Prepare the textboxes that will be 2-way data bounded to a given property in _recipe.
          // The first section configures textboxes that are bound to not dependent properties (it's only allowed to bind to properties)
          _textboxBindings.Add(new KeyValuePair<TextBox, KeyValuePair<string, string>>(txtSluttVolum, new KeyValuePair<string, string>("BatchVolum", "0.0")));
@@ -239,9 +239,34 @@ namespace BeerRecipe
          }
       }
 
+      private bool PreOnAddItem()
+      {
+
+         if (!System.IO.File.Exists(Properties.Settings.Default.GrainList))
+         {
+            OpenFileDialog fd = new OpenFileDialog();
+            fd.Title = "The grain list must be set";
+            //fd.InitialDirectory = @"E:\Bilder\Familie";
+            fd.Filter = "Excel files (*.xlsx*)|*.xlsx";
+            fd.FilterIndex = 1;
+            fd.RestoreDirectory = true;
+            if (fd.ShowDialog() == DialogResult.OK)
+            {
+               Properties.Settings.Default.GrainList = lblGrainFile.Text = fd.FileName;
+               Properties.Settings.Default.Save();
+            }
+         }
+         return System.IO.File.Exists(Properties.Settings.Default.GrainList);
+      }
+
       private void OnAddItem(object sender, EventArgs e)
       {
+         if (!PreOnAddItem())
+         {
+            return;
+         }
          Malt f = new Malt();
+         f.GrainListFile = Properties.Settings.Default.GrainList;
          DialogResult ret = f.ShowDialog();
          if (ret == DialogResult.OK)
          {
@@ -382,6 +407,11 @@ namespace BeerRecipe
       private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
       {
          lblConvertTo.Text = (cbFrom.SelectedIndex != 1) ? "°F" : "°C";
+      }
+
+      private void brnClearGrainFile_Click(object sender, EventArgs e)
+      {
+         Properties.Settings.Default.GrainList = lblGrainFile.Text = "";
       }
    }
 }
